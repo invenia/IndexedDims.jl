@@ -4,6 +4,12 @@ using Test
 @testset "IndexedDims.jl" begin
     a = IndexedDimsArray([1 2 3; 4 5 6; 7 8 9], 2:4, 2:4)
 
+    # constructor
+    @test ==(
+        IndexedDimsArray([1 2; 3 4; 5 6]),
+        IndexedDimsArray([1 2; 3 4; 5 6], Base.OneTo(2), Base.OneTo(3))
+    )
+
     # standard fallback
     @test a[1] == 1
     @test a[3, 2] == 8
