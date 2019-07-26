@@ -3,6 +3,9 @@ uuid = "54627995-2b07-5000-a6c8-677f0f181cbe"
 authors = ["Eric Davies <iamed2@gmail.com>"]
 version = "0.1.0"
 
+[deps]
+AcceleratedArrays = "44e12807-9a19-5591-91cf-c1b4fb89ce64"
+
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
