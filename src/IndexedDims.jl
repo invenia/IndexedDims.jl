@@ -20,6 +20,8 @@ end
 Base.parent(arr::IndexedDimsArray) = arr.data
 Base.size(arr::IndexedDimsArray) = size(parent(arr))
 
+IndexedDimsArray(data::AbstractArray) = IndexedDimsArray(data, axes(data)...)
+
 function IndexedDimsArray(data::AbstractArray{T, N}, dim_inds::Vararg{AcceleratedVector, N}) where {T, N}
     return IndexedDimsArray(data, dim_inds)
 end
