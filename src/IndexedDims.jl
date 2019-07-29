@@ -12,7 +12,7 @@ end
 
 bypass(val::T) where {T} = BypassIndex{T}(val)
 
-struct IndexedDimsArray{T, N, A<:AbstractArray{T, N}, Is<:NTuple{N, AcceleratedVector}} <: AbstractArray{T, N}
+struct IndexedDimsArray{T, N, A<:AbstractArray{T, N}, Is<:Tuple{Vararg{<:AcceleratedVector,N}}} <: AbstractArray{T, N}
     data::A
     indexes::Is
 end
