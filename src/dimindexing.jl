@@ -25,10 +25,6 @@ function Base.to_indices(arr::IndexedDimsArray,
     (axes(first(inds), 1), to_indices(arr, tail(inds), tail(I))...)
 end
 
-
-
-#Base.to_indices(arr::IndexedDimsArray, inds::Tuple{}, I::Tuple{}) = ()
- 
 function Base.to_indices(arr::IndexedDimsArray, inds::Tuple{AbstractVector}, I::Tuple{Any})
     to_index(first(inds), first(I))
 end
@@ -36,18 +32,6 @@ end
 function Base.to_indices(arr::IndexedDimsArray, inds::Tuple{AbstractVector}, I::Tuple{Colon})
     (axes(first(inds), 1),)
 end
-
-
-
-#function Base.to_indices(arr::IndexedDimsArray, inds::Tuple{AbstractVector}, I::Tuple{Colon})
-#    axes(first(inds), 1)
-#end
-
-
-
-#Base.to_indices(arr::IndexedDimsArray, inds::AbstractVector, I::Any) = to_index(inds, I)
-
-#Base.to_indices(arr::IndexedDimsArray, inds::AbstractVector, I::Colon) = axes(inds, 1)
 
 function Base.getindex(arr::IndexedDimsArray{T, N}, inds::Any) where {T, N}
     getindex(parent(arr), inds)
@@ -61,8 +45,7 @@ function Base.getindex(arr::IndexedDimsArray{T, N}, inds::Vararg{Any, N}) where 
 end
 
 function Base.setindex!(arr::IndexedDimsArray{T, N}, val, inds::Vararg{Any, N}) where {T, N}
-    @boundscheck checkbounds(arr, inds...)
-    @inbounds setindex!(parent(arr), val, to_indices(arr, inds)...)
+    setindex!(parent(arr), val, to_indices(arr, inds)...)
 end
 
 #=
