@@ -5,8 +5,7 @@ Generate an `AcceleratedVector` from any `AbstractVector` by choosing an appropr
 based on the type of the vector.
 This function is a no-op for `AcceleratedVector`s.
 
-
-```jldoctest
+```jldoctest; setup = :(using IndexedDims: autoaccelerate)
 julia> autoaccelerate(1:3)
 3-element UnitRange{Int64} + UniqueSortIndex:
  1
