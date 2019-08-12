@@ -1,7 +1,10 @@
+using Documenter
 using IndexedDims
 using Test
 
 @testset "IndexedDims.jl" begin
+    doctest(IndexedDims)
+
     a = IndexedDimsArray([1 2 3; 4 5 6; 7 8 9], 2:4, 2:4)
 
     # constructor
