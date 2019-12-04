@@ -12,5 +12,3 @@ end
 function Base.setindex!(arr::UnindexedDimsArray, val, inds::Int...)
     return setindex!(parent(parent(arr)), val, inds...)
 end
-
-# function Base.similar(arr::UnindexedDimsArray, )
