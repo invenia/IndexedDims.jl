@@ -16,6 +16,7 @@
         return dest
     end
 end
+
 function _unsafe_getindex!(dest::AbstractArray, src::AbstractArray, I::Vararg{Union{Real, AbstractArray, Colon}, N}) where N
     @inbounds for (i, j) in zip(eachindex(dest), Iterators.product(Base.to_indices(src, I)...))
         dest[i] = src[j...]
