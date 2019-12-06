@@ -1,3 +1,15 @@
+"""
+    dim_to_indices(arr::IndexedDimsArray{T, N}, inds::Tuple{Vararg{Any, N}}) where {T, N}
+
+Convert indexes into the IndexedDimsArray into indexes into the underlying array.
+
+```jldoctest; setup = :(using IndexedDims)
+julia> arr = IndexedDimsArray([4.0, 5.0], ["a", "b"]);
+
+julia> IndexedDims.dim_to_indices(arr, (["b"],))
+([2],)
+```
+"""
 function dim_to_indices(arr::IndexedDimsArray{T, N}, inds::Tuple{Vararg{Any, N}}) where {T, N}
     return map(unwrap_index, arr.indexes, inds)
 end
