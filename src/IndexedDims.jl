@@ -4,6 +4,7 @@ using AcceleratedArrays
 
 export IndexedDimsArray, bypass
 
+include("base.jl")
 include("autoaccelerate.jl")
 
 struct BypassIndex{T}
@@ -40,7 +41,7 @@ function Base.setindex!(arr::IndexedDimsArray{T, N}, val, inds::Vararg{Int, N}) 
 end
 ###
 
-function Base.similar(arr::IndexedDimsArray{T, N, A}, inds::Tuple{Vararg{AbstractUnitRange, N}}) where {T, N, A}
+function Base.similar(arr::IndexedDimsArray{T, N, A}, inds::Tuple{Vararg{Union{Int, AbstractUnitRange}, N}}) where {T, N, A}
     return IndexedDimsArray(similar(parent(arr), inds), map(reindex, arr.indexes, inds))
 end
 

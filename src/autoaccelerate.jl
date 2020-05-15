@@ -46,10 +46,20 @@ function autoaccelerate(v::AbstractVector)
     end
 end
 
-for index_type in (UniqueSortIndex, SortIndex, UniqueHashIndex, HashIndex)
+for index_type in (UniqueSortIndex, SortIndex, UniqueHashIndex)
     @eval _reindex_type(::Type{<:$index_type}, index::AbstractUnitRange) = $index_type
 end
 
-function reindex(v::AcceleratedVector{<:Any, <:Any, I}, index::AbstractUnitRange) where I
+_reindex_type(::Type{<:Union{HashIndex, UniqueHashIndex}}, index) = HashIndex
+
+
+function reindex(v::AcceleratedVector{<:Any, <:Any, I}, index) where I
     return accelerate(parent(v)[index], _reindex_type(I, index))
+end
+
+reindex(v::AcceleratedVector, ::Colon) = v
+
+# no way to know whether a given AbstractArray is unique or sorted
+function reindex(v::AcceleratedVector{<:Any, <:Any, I}, index::AbstractArray) where I
+    return accelerate(parent(v)[index], HashIndex)
 end
