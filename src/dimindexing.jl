@@ -1,3 +1,9 @@
+struct BypassIndex{T}
+    index::T
+end
+
+bypass(val::T) where {T} = BypassIndex{T}(val)
+
 """
     dim_to_indices(arr::IndexedDimsArray{T, N}, inds::Tuple{Vararg{Any, N}}) where {T, N}
 
