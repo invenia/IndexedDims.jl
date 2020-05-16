@@ -2,6 +2,7 @@ module IndexedDims
 
 using AcceleratedArrays
 
+export AcceleratedArray
 export IndexedDimsArray, bypass
 
 include("array.jl")  # IndexedDimsArray type
