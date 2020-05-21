@@ -1,8 +1,9 @@
 module IndexedDims
 
 using AcceleratedArrays
+using AcceleratedArrays: AbstractUniqueIndex
 
-export AcceleratedArray
+export AcceleratedArray, UniqueHashIndex, HashIndex, UniqueSortIndex, SortIndex
 export IndexedDimsArray, bypass
 
 include("array.jl")  # IndexedDimsArray type
