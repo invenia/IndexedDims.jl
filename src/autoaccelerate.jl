@@ -12,6 +12,13 @@ julia> autoaccelerate(1:3)
  2
  3
 
+julia> autoaccelerate(['a', 'b', 'b', 'c'])
+4-element Array{Char,1} + SortIndex (3 unique elements):
+ 'a'
+ 'b'
+ 'b'
+ 'c'
+
 julia> autoaccelerate(["foo", "bar", "baz", "bar"])
 4-element Array{String,1} + HashIndex (3 unique elements):
  "foo"
@@ -26,10 +33,7 @@ julia> autoaccelerate(["foo", "bar", "baz"])
  "baz"
 ```
 """
-function autoaccelerate end
-
 autoaccelerate(v::AcceleratedVector) = v
-
 autoaccelerate(r::OrdinalRange) = accelerate(r, UniqueSortIndex)
 function autoaccelerate(v::AbstractVector)
     sorted = issorted(v)
