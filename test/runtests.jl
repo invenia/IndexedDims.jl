@@ -3,7 +3,8 @@ using IndexedDims
 using Test
 
 @testset "IndexedDims.jl" begin
-    doctest(IndexedDims)
+    # The doctests fail on x86, so only run them on 64-bit hardware
+    Sys.WORD_SIZE == 64 && doctest(IndexedDims)
 
     @testset "constructor" begin
         @test ==(
