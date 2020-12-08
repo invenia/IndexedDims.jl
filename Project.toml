@@ -7,6 +7,7 @@ version = "0.1.0"
 AcceleratedArrays = "44e12807-9a19-5591-91cf-c1b4fb89ce64"
 
 [compat]
+AcceleratedArrays = "0.3"
 Documenter = "0.23"
 
 [extras]
